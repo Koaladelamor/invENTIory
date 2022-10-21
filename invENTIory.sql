@@ -1,3 +1,10 @@
+DROP USER IF EXISTS 'enti'@'localhost';
+DROP USER IF EXISTS 'editor'@'localhost';
+CREATE USER 'enti'@'localhost' IDENTIFIED BY 'enti';
+CREATE USER 'editor'@'localhost' IDENTIFIED BY 'enti';
+GRANT ALL PRIVILEGES ON inventiory.* TO 'enti'@'localhost';
+GRANT SELECT,INSERT,UPDATE ON inventiory.* TO 'editor'@'localhost';
+
 DROP TABLE IF EXISTS inventory_armours;
 DROP TABLE IF EXISTS inventory_weapons;
 DROP TABLE IF EXISTS inventory_items;
@@ -10,12 +17,6 @@ DROP TABLE IF EXISTS weapon_types;
 DROP TABLE IF EXISTS bank_accounts;
 DROP TABLE IF EXISTS users;
 
-DROP USER IF EXISTS 'enti'@'localhost';
-DROP USER IF EXISTS 'editor'@'localhost';
-CREATE USER 'enti'@'localhost' IDENTIFIED BY 'enti';
-CREATE USER 'editor'@'localhost' IDENTIFIED BY 'enti';
-GRANT ALL PRIVILEGES ON invENTIory.* TO 'enti'@'localhost';
-GRANT SELECT,INSERT,UPDATE ON invENTIory.* TO 'editor'@'localhost';
 
 CREATE TABLE users (
 id_user INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -25,8 +26,8 @@ password CHAR(32) NOT NULL,
 phone VARCHAR(16),
 birthdate DATE NOT NULL,
 gender CHAR(1),
-email VARCHAR(32),
-country CHAR(2) NOT NULL,
+email VARCHAR(32) NOT NULL,
+country CHAR(2) NULL,
 registration DATETIME NOT NULL
 );
 CREATE TABLE bank_accounts (
