@@ -111,7 +111,7 @@ $query = <<<EOD
 SELECT id_user FROM users WHERE username="$user";
 EOD;
 
-$res = conn->query($query);
+$res = $conn->query($query);
 
 if($res->num_rows >= 1){
 	echo "ERROR 6: Usuario ya existe";

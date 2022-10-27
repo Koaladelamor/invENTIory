@@ -18,7 +18,7 @@ if(strlen($user) < 4){
 
 $user_quotes = filter_var($user, FILTER_SANITIZE_ADD_SLASHES);
 
-echo $user_quotes;
+//echo $user_quotes;
 
 if($user != $user_quotes){
 	echo "ERROR 2.1: Username mal formado";
@@ -27,20 +27,20 @@ if($user != $user_quotes){
 
 /* PASS CHECK */
 
-$password = trim($_POST["password1"]);
+$password = trim($_POST["password"]);
 if(strlen($password) < 6){
 	echo"ERROR 3: Password mal formada";
 	exit;
 }
 
-$pass_nums = filter_var($_POST["password1"], FILTER_SANITIZE_NUMBER_INT);
+$pass_nums = filter_var($_POST["password"], FILTER_SANITIZE_NUMBER_INT);
 if(strlen($pass_nums) == 0){
 	echo"ERROR 3.1: Password mal formado. Introduce al menos un número";
 	exit;
 }
 
 
-if(strlen($pass_nums) == (strlen($_POST["password1"]))){
+if(strlen($pass_nums) == (strlen($_POST["password"]))){
 	echo "ERROR 3.2: Password mal formado. Introduce al menos un carácter";
 	exit;
 }
@@ -82,7 +82,7 @@ if($res->num_rows != 1){
 	echo "ERROR DB 3: Login incorrecto";
 }
 
-$user = res->fetch_assoc();
+$user = $res->fetch_assoc();
 
 session_start();
 
