@@ -47,11 +47,11 @@ if(!$res){
 	exit;
 }
 
-require_once("login_manager.php");
+//require_once("login_manager.php");
 
-session_start();
+//session_start();
 
-$_SESSION["id_user"] = $user["id_user"];
+//$_SESSION["id_user"] = $user["id_user"];
 
 
 

@@ -15,9 +15,26 @@ function print_head($subtitle = ""){
 EOD;
 }
 
+function get_menu(){
+	$login = "<li><a href=\"index.php\">Login</a></li>";
+	if(!isset($_SESSION["id_user"])){
+		$login = "<li><a href=\"logout.php\">Logout</a></li>";
+	}
+	return <<<EOD
+<ul>
+	<li><a href="inventiory.php">Portada</a></li>
+	<li><a href="shop.php">Tienda</a></li>
+	$login
+</ul>
+EOD;
+}
+
 function print_body($content = ""){
+	$menu = get_menu();
+
 	echo <<<EOD
 <body>
+$menu
 $content
 </body>
 </html>

@@ -35,6 +35,6 @@ if(!$res){
 
 $bank_account = $res->fetch_assoc();
 
-echo "Tu saldo es: ".$bank_acc["balance"];
+echo "Tu saldo es: ".$bank_account["balance"];
 
 ?>

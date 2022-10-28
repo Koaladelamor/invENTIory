@@ -1,5 +1,11 @@
 <?php
 
+//require_once("login_manager.php");
+
+//session_start();
+
+//$_SESSION["id_user"] = $user["id_user"];
+
 if (isset($_POST["type"])
 && isset($_POST["icon"])
 ){
@@ -61,12 +67,6 @@ if(!$res){
 	echo "ERROR DB 2: Query mal formada";
 	exit;
 }
-
-//require_once("login_manager.php");
-
-//session_start();
-
-//$_SESSION["id_user"] = $user["id_user"];
 
 
 
