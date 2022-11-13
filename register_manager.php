@@ -133,6 +133,27 @@ if(!$res){
 	exit;
 }
 
+$last_insert_id = mysqli_insert_id($conn);
 
+$query = <<<EOD
+INSERT INTO bank_accounts(balance, id_user)
+VALUES(10000, $last_insert_id);
+EOD;
+
+$res = $conn->query($query);
+
+if(!$res){
+	echo "ERROR DB 3: Query mal formada";
+	exit;
+}
+
+$success_message = <<<EOD
+<p>Te has registrado correctamente.</p>
+<p><a href=index.php>Login</a></p>
+EOD;
+
+echo $success_message;
+
+//header("Location: index.php");
 
 ?>

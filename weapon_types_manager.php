@@ -1,5 +1,18 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION["id_user"])){
+	echo "ERROR 1: Usuario no identificado";
+	exit;
+}
+
+$id_user = intval($_SESSION["id_user"]);
+
+if($id_user != 1){
+	echo "No tienes privilegios pleb";
+	exit;
+}
 
 if (!isset($_POST["type"])
 || !isset($_POST["icon"])
@@ -47,12 +60,6 @@ if(!$res){
 	exit;
 }
 
-//require_once("login_manager.php");
-
-//session_start();
-
-//$_SESSION["id_user"] = $user["id_user"];
-
-
+header("Location: weapon_types.php");
 
 ?>

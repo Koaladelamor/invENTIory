@@ -1,5 +1,18 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION["id_user"])){
+	echo "ERROR 1: Usuario no identificado";
+	exit;
+}
+
+$id_user = intval($_SESSION["id_user"]);
+
+if($id_user != 1){
+	echo "No tienes privilegios pleb";
+	exit;
+}
 
 if (!isset($_POST["type"])
 || !isset($_POST["icon"])
@@ -53,6 +66,6 @@ if(!$res){
 
 //$_SESSION["id_user"] = $user["id_user"];
 
-
+header("Location: armour_types.php");
 
 ?>

@@ -3,6 +3,20 @@
 
 require("template.php");
 
+session_start();
+
+if(!isset($_SESSION["id_user"])){
+	echo "ERROR 1: Usuario no identificado";
+	exit;
+}
+
+$id_user = intval($_SESSION["id_user"]);
+
+if($id_user != 1){
+	echo "No tienes privilegios pleb";
+	exit;
+}
+
 print_head("Weapon Type");
 
 $weapon_type_form = <<<EOD

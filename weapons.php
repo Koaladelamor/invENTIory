@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 
 if(!isset($_SESSION["id_user"])){
@@ -11,9 +10,10 @@ if(!isset($_SESSION["id_user"])){
 $id_user = intval($_SESSION["id_user"]);
 
 if($id_user != 1){
-	echo "No tienes privilegios pleb";
+	echo"No tienes privilegios pleb";
 	exit;
 }
+
 
 require_once("db_config.php");
 
@@ -25,7 +25,7 @@ if($conn->errno){
 }
 
 $query = <<<EOD
-SELECT * FROM armour_types;
+SELECT * FROM weapon_types;
 EOD;
 
 $res = $conn->query($query);
@@ -37,21 +37,21 @@ if(!$res){
 $options = "";
 while ($opt = $res->fetch_assoc()){
 	$options .= <<<EOD
-<option value="{$opt["id_armour_type"]}">{$opt["type"]}</option>
+<option value="{$opt["id_weapon_type"]}">{$opt["type"]}</option>
 EOD;
 }
 
 echo <<<EOD
-<form method="POST" action="armours_manager.php">
-<p><label for="armour-types">Tipos:</label>
-<select id="armour-types" name="id_armour_type">
+<form method="POST" action="weapons_manager.php">
+<p><label for="weapon-types">Tipos:</label>
+<select id="weapon-types" name="id_weapon_type">
 $options
 </select>
-<a href="armour_types.php">Añadir tipo de armadura</a>
+<a href="weapon_types.php">Añadir tipo de arma</a>
 </p>
 
-<p><label for="armour">Armadura:</label>
-<input type="text" id="armour" name="armour" /></p>
+<p><label for="weapon">Arma:</label>
+<input type="text" id="weapon" name="weapon" /></p>
 
 <p><label for="description">Descripción:</label>
 <input type="text" id="description" name="description" /></p>
@@ -68,7 +68,7 @@ $options
 <p><label for="icon">Icono:</label>
 <input type="text" id="icon" name="icon" /></p>
 
-<input type="submit" value="Enviar armadura" /></p>
+<input type="submit" value="Enviar arma" /></p>
 
 </form>
 EOD;

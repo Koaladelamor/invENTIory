@@ -80,6 +80,7 @@ if(!$res){
 
 if($res->num_rows != 1){
 	echo "ERROR DB 3: Login incorrecto";
+	session_destroy();
 	exit;
 }
 
@@ -90,7 +91,6 @@ $user = $res->fetch_assoc();
 session_start();
 
 $_SESSION["id_user"] = $user["id_user"];
-
 
 //Redirección de la URL
 header("Location: inventiory.php");

@@ -52,6 +52,41 @@ while($armour = $res->fetch_assoc()){
 EOD;
 }
 
+$query = <<<EOD
+SELECT * FROM weapons;
+EOD;
+
+$res = $conn->query($query);
+
+while($weapon = $res->fetch_assoc()){
+	$content .= <<<EOD
+<form method="POST" action="shop_weapon_manager.php">
+<input type="hidden" name="id_weapon" value="{$weapon["id_weapon"]}" />
+<h3>{$weapon["weapon"]}</h3>
+<p><strong>{$weapon["value"]} €</strong></p>
+<p><input type="submit" value="+" /></p>
+</form>
+EOD;
+}
+
+$query = <<<EOD
+SELECT * FROM items;
+EOD;
+
+$res = $conn->query($query);
+
+while($item = $res->fetch_assoc()){
+	$content .= <<<EOD
+<form method="POST" action="shop_item_manager.php">
+<input type="hidden" name="id_item" value="{$item["id_item"]}" />
+<h3>{$item["item"]}</h3>
+<p><strong>{$item["value"]} €</strong></p>
+<p><input type="submit" value="+" /></p>
+</form>
+EOD;
+}
+
+
 print_body($content);
 
 ?>
